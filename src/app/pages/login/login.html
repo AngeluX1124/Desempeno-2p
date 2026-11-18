@@ -1,0 +1,54 @@
+<div class="container d-flex align-items-center justify-content-center min-vh-100">
+  <div class="card shadow-lg p-4 w-100" style="max-width: 420px; border-radius: 1rem;">
+    <div class="text-center mb-4">
+      <h2 class="fw-bold text-primary">SHD App</h2>
+      <p class="text-muted">Inicia sesión para acceder al muro</p>
+    </div>
+
+    <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
+      {{ errorMessage }}
+    </div>
+
+    <form (ngSubmit)="onLogin()">
+      <div class="mb-3">
+        <label for="username" class="form-label fw-semibold">Usuario</label>
+        <div class="input-group">
+          <span class="input-group-text bg-light"><i class="bi bi-person"></i></span>
+          <input 
+            type="text" 
+            id="username" 
+            class="form-control" 
+            [(ngModel)]="username" 
+            name="username" 
+            placeholder="Ej. admin" 
+            required>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label for="password" class="form-label fw-semibold">Contraseña</label>
+        <div class="input-group">
+          <span class="input-group-text bg-light"><i class="bi bi-lock"></i></span>
+          <input 
+            type="password" 
+            id="password" 
+            class="form-control" 
+            [(ngModel)]="password" 
+            name="password" 
+            placeholder="Ej. 12345" 
+            required>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100 py-2 fw-bold shadow-sm" [disabled]="loading">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+        {{ loading ? 'Autenticando...' : 'Iniciar Sesión' }}
+      </button>
+    </form>
+
+    <div class="mt-4 text-center text-muted small">
+      <p class="mb-1">💡 <strong>Credenciales de prueba:</strong></p>
+      <p class="mb-0">Usuario: <code>admin</code> | Contraseña: <code>12345</code></p>
+    </div>
+  </div>
+</div>
